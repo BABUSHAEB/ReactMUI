@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import NavBar from './Components/NavBar';
+import Form from './Components/Form';
+import Tables from './Components/Tables';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Signup from './Components/Signup';
+import Login from './Components/Login';
+import DataStore from './ContextStore/DataStore';
+import TablesOne from './Tables/TablesOne';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <DataStore>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="forms" element={<Form />}>
+              <Route index element={<Signup />} />
+              <Route path="signup/" element={<Signup />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+            <Route path="tables" element={<Tables />} />
+            <Route path="tablesone" element={<TablesOne />} />
+          </Routes>
+        </BrowserRouter>
+      </DataStore>
     </div>
   );
 }
